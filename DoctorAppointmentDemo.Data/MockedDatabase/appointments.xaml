@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Appointment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Id>1</Id>
+  <CreatedAt>2025-03-30T15:36:12.623856+02:00</CreatedAt>
+  <UpdatedAt>0001-01-01T00:00:00</UpdatedAt>
+  <Patient>
+    <Id>1</Id>
+    <CreatedAt>2025-03-29T23:11:33.8557457+01:00</CreatedAt>
+    <UpdatedAt>0001-01-01T00:00:00</UpdatedAt>
+    <Name>Petro</Name>
+    <Surname>Petrenko</Surname>
+    <Phone>57812351</Phone>
+    <Email>andrii@gmail.com</Email>
+    <IllnessType>DentalDisease</IllnessType>
+    <Address>Kyiv, Main St. 1</Address>
+  </Patient>
+  <Doctor>
+    <Id>2</Id>
+    <CreatedAt>2024-01-04T20:15:00.5742047+01:00</CreatedAt>
+    <UpdatedAt>0001-01-01T00:00:00</UpdatedAt>
+    <Name>Vasya</Name>
+    <Surname>Petrov</Surname>
+    <DoctorType>Dentist</DoctorType>
+    <Experience>20</Experience>
+    <Salary>0.0</Salary>
+  </Doctor>
+  <DateTimeFrom>2025-03-31T15:36:10.8348548+02:00</DateTimeFrom>
+  <DateTimeTo>2025-03-31T16:36:10.8350667+02:00</DateTimeTo>
+  <Description>General Check-up</Description>
+</Appointment>

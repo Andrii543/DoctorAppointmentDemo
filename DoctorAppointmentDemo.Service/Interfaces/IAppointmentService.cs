@@ -5,7 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyDoctorAppointment.Service.Interfaces;
+namespace MyDoctorAppointment.Service.Interfaces
+{
+
     public interface IAppointmentService
     {
         Appointment Create(Appointment appointment);
@@ -18,4 +20,5 @@ namespace MyDoctorAppointment.Service.Interfaces;
 
         Appointment Update(int id, Appointment appointment);
     }
+
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Doctor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Id>0</Id>
+  <CreatedAt>0001-01-01T00:00:00</CreatedAt>
+  <UpdatedAt>0001-01-01T00:00:00</UpdatedAt>
+  <Name>Ivan</Name>
+  <Surname>Ivanov</Surname>
+  <DoctorType>Dentist</DoctorType>
+  <Experience>5</Experience>
+  <Salary>5000</Salary>
+</Doctor>

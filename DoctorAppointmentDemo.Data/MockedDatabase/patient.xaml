@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patient xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Id>0</Id>
+  <CreatedAt>0001-01-01T00:00:00</CreatedAt>
+  <UpdatedAt>0001-01-01T00:00:00</UpdatedAt>
+  <Name>Andrii</Name>
+  <Surname>Rusyn</Surname>
+  <Phone>14114124214</Phone>
+  <Email>Vasya@gmail.com</Email>
+  <IllnessType>DentalDisease</IllnessType>
+  <Address>Lviv, Olesnytskogo 1</Address>
+</Patient>

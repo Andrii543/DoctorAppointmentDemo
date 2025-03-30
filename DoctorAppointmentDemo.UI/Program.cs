@@ -2,6 +2,9 @@
 using MyDoctorAppointment.Service.Interfaces;
 using MyDoctorAppointment.Service.Services;
 using DoctorAppointmentDemo.UI.MenuOptions;
+using System.Xml.Serialization;
+using System.Xml.Linq;
+using MyDoctorAppointment.Data.Configuration;
 
 namespace MyDoctorAppointment
 {
@@ -19,6 +22,11 @@ namespace MyDoctorAppointment
             var doctorService = new DoctorService();
             var patientService = new PatientService();
             var appointmentService = new AppointmentService();
+
+            const string linkXmlSavePatient = "CUsers\\andri\\Desktop\\DoctorAppointmentDemo\\DoctorAppointmentDemo.Data\\MockedDatabase\\patient.xaml";
+            const string linkXmlSaveDoctor = "C:\\Users\\andri\\Desktop\\DoctorAppointmentDemo\\DoctorAppointmentDemo.Data\\MockedDatabase\\doctors.xaml";
+            const string linkXmlSavaAppointemt = "C:\\Users\\andri\\Desktop\\DoctorAppointmentDemo\\DoctorAppointmentDemo.Data\\MockedDatabase\\appointments.xaml";
+
 
             while (true)
             {
@@ -59,8 +67,24 @@ namespace MyDoctorAppointment
                             DoctorType = Domain.Enums.DoctorTypes.Dentist,
                             Salary = 5000
                         };
-                        doctorService.Create(newDoctor);
-                        Console.WriteLine("Doctor added.");
+
+                        Console.WriteLine("Do you want to save the data? Yes/No");
+                        string? doctorSaveData = Console.ReadLine();
+
+                        if (doctorSaveData == "Yes")
+                        {
+
+                            var saveDataXml = new AppSettings();
+
+                            saveDataXml.SaveXml(newDoctor, linkXmlSaveDoctor);
+
+                            doctorService.Create(newDoctor);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Data not save");
+                        }
+                        Console.WriteLine("Doctor added and saved");
                         break;
 
                     case MenuOptions.ShowPatients:
@@ -74,14 +98,47 @@ namespace MyDoctorAppointment
                     case MenuOptions.AddPatient:
                         var newPatient = new Patient
                         {
-                            Name = "Petro",
-                            Surname = "Petrenko",
+                            Name = "Andrii",
+                            Surname = "Rusyn",
                             IllnessType = Domain.Enums.IllnessTypes.DentalDisease,
-                            Address = "Kyiv, Main St. 1"
+                            Phone = "14114124214",
+                            Email = "Vasya@gmail.com",
+                            Address = "Lviv, Olesnytskogo 1"
                         };
-                        patientService.Create(newPatient);
-                        Console.WriteLine("Patient added.");
-                        break;
+                        Console.WriteLine("Do you want to save the data? Yes/No");
+                        string? patientSaveData = Console.ReadLine();
+
+                        // Додавання пацієнта до json i xml
+                        if(patientSaveData == "Yes")
+                        {
+
+                            var saveDataXml = new AppSettings();
+
+                            saveDataXml.SaveXml(newPatient, linkXmlSavePatient);
+
+                            patientService.Create(newPatient);
+
+                            XDocument xdoc = XDocument.Load(linkXmlSavePatient);
+                            //XElement? root = xdoc.Element("patients");
+
+                            //if (root != null)
+                            //{
+                            //    root.Add(new XElement("patient",
+                            //         new XAttribute("name", newPatient.Name),
+                            //            new XElement("surname", newPatient.Surname),
+                            //            new XElement("Phone", newPatient.Phone),
+                            //            new XElement("Email", newPatient.Email),
+                            //            new XElement("Address", newPatient.Address),
+                            //            new XElement("IllnessType", newPatient.IllnessType)));
+                            //}
+                           //xdoc.Save(linkXmlSavePatient);
+                            Console.WriteLine("Patient added and saved.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Data not save");
+                        }
+                        break ;
 
                     case MenuOptions.ShowAppointments:
                         var appointments = appointmentService.GetAll();
@@ -118,8 +175,25 @@ namespace MyDoctorAppointment
                             DateTimeTo = DateTime.Now.AddDays(1).AddHours(1),
                             Description = "General Check-up"
                         };
-                        appointmentService.Create(appointment);
-                        Console.WriteLine("Appointment added.");
+                        Console.WriteLine("Do you want to save the data? Yes/No");
+                        string? appointmentSaveData = Console.ReadLine();
+
+                        if(appointmentSaveData == "Yes")
+                        {
+                            appointmentService.Create(appointment);
+
+                            var saveDataXml = new AppSettings();
+
+                            saveDataXml.SaveXml(appointment, linkXmlSavaAppointemt);
+
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Data not save");
+                        }
+
+                        Console.WriteLine("Appointment added and saved");
                         break;
 
                     case MenuOptions.Exit:
@@ -132,14 +206,48 @@ namespace MyDoctorAppointment
                 }
             }
         }
+
+
+
+    }
+
+
+    public class XMLTest
+    {
+
+        public void Test()
+        {
+            var patient = new Patient()
+            {
+                Name = "Andrii",
+                Surname = "Rusyn",
+                Phone = "5769210",
+                Email = "Andrii@gmail.com",
+                Address = "Lviv"       
+            };
+
+            XDocument xDoc = new XDocument(new XElement("patients",
+                new XElement("patient",
+                    new XAttribute("name", patient.Name),
+                        new XElement("surname", patient.Surname),
+                        new XElement("Phone", patient.Phone),
+                        new XElement("Email", patient.Email),
+                        new XElement("Address", patient.Address))));
+            xDoc.Save("C:\\Users\\andri\\Desktop\\DoctorAppointmentDemo\\DoctorAppointmentDemo.Data\\MockedDatabase\\patient.xaml");
+            Console.WriteLine("Saved!!!");
+        }
     }
 
     public static class Program
     {
         public static void Main()
         {
+            //var xmltest = new XMLTest();
+            //xmltest.Test();
+
             var doctorAppointment = new DoctorAppointment();
             doctorAppointment.Menu();
+
         }
     }
 }

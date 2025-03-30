@@ -14,6 +14,7 @@ namespace DoctorAppointmentDemo.UI.MenuOptions
         ShowPatients,
         AddPatient,
         ShowAppointments,
-        AddAppointment
+        AddAppointment,
+        Show
     }
 }
